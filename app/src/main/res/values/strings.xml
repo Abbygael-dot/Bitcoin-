@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Bitcoin Converter</string>
+    <string name="this_app_converts_naira_to_bitcoin">This app converts Naira to Bitcoin</string>
+    <string name="input_amount">Input amount</string>
+    <string name="input_amount_naira">Input amount (Naira)</string>
+    <string name="convert_to_bitcoin">Convert to bitcoin</string>
+    <string name="round_up_to_whole_number">Round up to whole number</string>
+    <string name="amount_in_bitcoin">amount in Bitcoin</string>
+    <string name="bitcoin_amount">%s Naira = %s BTC</string>
+</resources>

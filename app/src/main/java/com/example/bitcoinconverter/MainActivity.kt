@@ -3,6 +3,7 @@ package com.example.bitcoinconverter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bitcoinconverter.databinding.ActivityMainBinding
+import java.text.NumberFormat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,21 +19,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun convertToBit() {
         val naira = binding.inputAmount.text.toString().toDoubleOrNull()
-        if (naira == null) {
-            binding.result.text = " "
+        if (naira == null || naira == 0.00) {
+            displayAmount(estimatedAmount = 0.00)
             return
         }
 
-        var bitAmount = naira * 3.18
+        val bitAmount = naira * 3.18
+        var estimatedAmount = String.format("%.2f", bitAmount).toDouble()
 
         val roundUp = binding.switchOn.isChecked
         if (roundUp) {
-            bitAmount = kotlin.math.ceil(bitAmount)
+            estimatedAmount = kotlin.math.round(estimatedAmount)
         }
-        val inputText = binding.inputAmount.text
 
-        //val bitResult = java.text.NumberFormat.getCurrencyInstance().format(bitAmount)
-        binding.result.text = getString(R.string.bitcoin_amount,inputText, bitAmount.toString())
-        //binding.result.text = getString(R.string.bitcoin_amount, bitResult)
+        displayAmount(estimatedAmount)
+    }
+
+    private fun displayAmount(estimatedAmount: Double) {
+        val bitResult = NumberFormat.getNumberInstance().format(estimatedAmount)
+        binding.result.text = getString(R.string.bitcoin_amount, bitResult)
     }
 }

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val bitAmount = naira * 3.18
+        val bitAmount = (naira * 0.00000005345)
         var estimatedAmount = String.format("%.2f", bitAmount).toDouble()
 
         val roundUp = binding.switchOn.isChecked
